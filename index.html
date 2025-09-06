@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CFAgentic @ ICML'25">
+    <meta name="twitter:description" content="ICML 2025 Workshop on Collaborative and Federated Agentic Workflows">
+    <meta name="twitter:image" content="https://cfagentic.github.io/static/workshop.png">
+    
+    <title>SPOT @ ICLR 2026 - Workshop on Scaling Post-training for LLMs</title>
+
+    <!-- Multiple favicon formats for better support -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .a-table {
+            text-decoration: none !important;
+        }
+
+        .bg-primary {
+            background-color: darkgreen !important;
+        }
+
+        a {
+            color: black;
+            text-decoration: underline;
+        }
+
+        a.no-underline {
+            text-decoration: none;
+        }
+
+        .hero-section {
+            height: auto;
+            min-height: 50vh;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://www.lightfoottravel.com/cdn-cgi/image/width=1536,height=,quality=80,format=webp/https://lft-dev-images.s3.eu-west-1.amazonaws.com/public/destination/brazil-rio-de-janeiro-christ-sugar-loaf-mountain.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            margin-top: 56px;
+            padding: 2rem 1rem;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        section {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            scroll-margin-top: 70px; /* Offset for fixed navbar height plus some extra space */
+        }
+
+        body {
+            position: relative;
+        }
+
+        blockquote {
+          margin: 1.5rem 0;
+          padding: 1rem 1.5rem;
+          border-left: 4px solid #dee2e6;
+          background-color: #f8f9fa;
+          font-style: italic;
+          position: relative;
+        }
+
+        .blockquote-modern {
+          border-left: 4px solid #0d6efd;
+          background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          border-radius: 0 8px 8px 0;
+        }
+
+        /* Responsive text for mobile screens */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section .lead {
+                font-size: 1rem;
+            }
+
+            .hero-section img {
+                max-width: 150px;
+            }
+        }
+
+        /* Extra small screen adjustment */
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        h2.headline-underline {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .table-responsive {
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .time-column {
+            width: 150px;
+            font-weight: 600;
+        }
+        .session-column {
+            width: 200px;
+        }
+        thead.table-dark {
+            background-color: #2c3e50;
+        }
+        .table-dark th {
+            border-color: #34495e;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(236, 240, 245, 0.5);
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        .table-secondary {
+            background-color: #ecf0f1 !important;
+            color: #2c3e50;
+            font-style: italic;
+        }
+        tbody td {
+            vertical-align: middle;
+            padding: 12px 15px;
+            border-color: #eee;
+        }
+        @media (max-width: 768px) {
+            .time-column, .session-column {
+                width: auto;
+            }
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .break-row {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        .break-row:hover {
+            background-color: #dee2e6 !important;
+        }
+
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Fixed Navigation Bar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SPOT @ ICLR'26</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#description">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cfp">Call for Papers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#speakers">Invited Speakers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#program">Schedule</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <!-- <a class="nav-link" href="#accepted-papers">Accepted Papers</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#instructions">Paper, Poster & Oral Instructions</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Organizers</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#reviewers">Program Committee</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="text-center">
+            <h1>ICLR 2026 Workshop on Scaling Post-training for LLMs</h1>
+            <h2>SPOT @ ICLR'26</h2>
+            <!-- <p class="lead">Room 215-216, Vancouver Convention Center, Canada - Saturday, July 19, 2025</p> -->
+            <img src="https://iclr.cc/static/core/img/ICLR-logo.svg" alt="ICLR Conference Logo" style="max-width: 200px; margin-top: 15px;">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Description Section with Sidebar -->
+        <div class="row">
+            <div class="col-lg-8">
+                <section id="description">
+                    <h2 class="mb-4 headline-underline">About the Workshop</h2>
+                        <p>For the past several years, the research landscape in large language models (LLMs) has been overwhelmingly dominated by advancements in pre-training. The community has made tremendous strides in optimizing every facet of this phase, from novel architectures and attention mechanisms to efficient training algorithms and curated, web-scale datasets. The result has been a series of foundational models with increasingly powerful general capabilities.</p>
+                        
+                        <p>However, we are approaching a potential inflection point. As pre-training methodologies mature and the community converges on best practices, the rate of performance improvement from scaling pre-training alone appears to be decelerating. This emerging plateau has catalyzed a critical shift in focus towards a new frontier for model improvement: post-training.</p>
+                        
+                        <p>Post-training, encompassing techniques like Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), is no longer a mere final step for task-specific adaptation. It is evolving into a compute-intensive phase in its own right, crucial for unlocking the full potential of foundational models and optimizing for critical downstream behaviors, particularly those related to inference-time efficiency and safety. Yet, the science of post-training, especially at scale, remains in its infancy.</p>
+                        
+                        <p>This workshop is motivated by the urgent need to <b>establish rigorous and scalable methodologies, design choices, and approaches for post-training</b>. While today's design choices in pre-training are made with a core focus on their ability to scale, a similar "scaling laws" mindset for post-training is largely absent. We are only beginning to scratch the surface of fundamental questions across the entire stack. This includes, and is not limited to:</p>                       
+                        <ul>
+                         <li> <u>Algorithms:</u> What SFT and RL algorithms and reward modeling strategies are most effective and compute-efficient?</li>
+                         <li> <u>Systems & Infrastructure:</u> How do we build the systems and infrastructure to handle massive-scale RL, which presents a far more complex engineering challenge than pre-training?</li>
+                         <li> <u>Model Architecture:</u> Is a single, unified post-trained model the optimal path, or should we focus on developing ecosystems of specialized models that can be orchestrated as agents?</li>
+                         <li> <u>Data:</u> Understanding quantity, quality, and diversity of data required for SFT or RL, and how does their interplay affect each other?</li>
+                         <li> <u>Environment:</u> Developing the foundational environments and sandboxes necessary to apply large-scale RL to complex domains beyond code and mathematics.</li>
+                         <li> <u>Verification:</u> Addressing verification as a critical bottleneck, where the cost of evaluating model outputs can even surpass that of the RL rollouts themselves.</li>
+                        </ul> 
+                        <p>The industrial research landscape is already signaling the importance of this shift. Recent models from organizations like DeepSeek and xAI (with Grok) have reportedly dedicated post-training compute budgets that are a significant fraction, in some cases, nearly equal to their pre-training compute. This demonstrates that scaling post-training is not a future-looking academic question but a present-day industrial imperative.</p>
+                        
+                        <p>This workshop aims to bring together researchers and practitioners from academia and industry to address this critical gap. Our goal is to consolidate our nascent understanding, share best practices, and collectively chart a research agenda for what works in LLM post-training at scale.</p>
+                </section>
+                <section id="cfp">
+                    
+                    <h2 class="mb-4 headline-underline">Call for Papers</h2>
+                        <p>To be announced.</p>
+                </section>
+            </div>
+            <div class="col-lg-4 mt-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">News</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <!-- <li class="mb-3">
+                                <div class="small text-muted">July 20, 2025</div>
+                                <div><b>The CFAgentic@ICML'25 workshop was a full success.</b> We would like to thank everyone for their in-person and virtual contributions. We really enjoyed the lively and thought-provoking discussions throughout the workshop day!</div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="small text-muted">May 25, 2025</div>
+                                <div><b>Final deadline extension</b> to May 27, 2025 11.59pm AoE due to popular demand.</div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="small text-muted">May 19, 2025</div>
+                                <div><b>Deadline extended</b> to May 25, 2025 11.59pm AoE due to many requests related to the NeurIPS deadline.</div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="small text-muted">May 09, 2025</div>
+                                <div>Workshop date set: Saturday, July 19, 2025 in Room 215-216.</div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="small text-muted">April 02, 2025</div>
+                                <div>OpenReview <a href="https://openreview.net/group?id=ICML.cc/2025/Workshop/CFAgentic">submission portal</a> now available.</div>
+                            </li> -->
+                            <li class="mb-3">
+                                <div class="small text-muted">September 20, 2025</div>
+                                <div>Workshop proposal submitted to ICLR 2026!</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Important Dates</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Paper Submission Deadline
+                                <span class="badge bg-secondary">To be announced</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">  <!-- <style="text-decoration: line-through"> -->
+                                Author Notification
+                                <span class="badge bg-secondary">To be announced</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Camera-Ready Deadline*
+                                <span class="badge bg-secondary">To be announced</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Workshop Date
+                                <span class="badge bg-secondary">To be announced</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <small>*The workshop is non-archival and doesn't have proceedings.</small>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Relevant Links</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="https://iclr.cc/Conferences/2026" target="_blank" class="text-decoration-none">
+                                    ICLR 2026 Main Conference
+                                    <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://iclr.cc/Conferences/2026/AuthorGuide" class="text-decoration-none">
+                                    ICLR 2026 Author Instructions & Author Kit
+                                    <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="" class="text-decoration-none">
+                                    OpenReview Submission Portal (To be announced)
+                                    <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="mailto:spoticlr@gmail.com" class="text-decoration-none">
+                                    E-Mail the organizers
+                                    <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Supported by</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img class="img-thumbnail" style="max-width: 150px;" src="https://aij.ijcai.org/wp-content/uploads/2021/07/ARTINT_Logo2_c_web_more.jpg"/>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Invited Speakers Section -->
+        <section id="speakers">
+            <h2 class="mb-4 headline-underline">Invited Speakers (Accepted)</h2>
+            <p class="lead">We are looking forward to hosting an exciting set of invited speakers from diverse research backgrounds!</p>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/invited-speakers/rishabh_agrawal.jpg" class="img-fluid rounded-start p-2" alt="Rishabh Agarwal", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h5 class="card-title"><a href="https://agarwl.github.io/" target="_blank" class="no-underline">Rishabh Agarwal</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Ex-Researcher: Meta, Google DeepMind<br>Adjunct Professor at McGill University</h6>
+                                    <!-- <p class="card-text mt-auto"><strong>Talk:</strong> The importance of exploration for test-time scaling</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/invited-speakers/jiantao.png" class="img-fluid rounded-start p-2" alt="Jiantao Jiao", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h5 class="card-title"><a href="https://people.eecs.berkeley.edu/~jiantao/" target="_blank" class="no-underline">Jiantao Jiao</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Assistant Professor at UC Berkeley</h6>
+                                    <!-- <p class="card-text mt-auto"><strong>Talk:</strong> Federated Reinforcement Learning: Statistical and Communication Trade-offs</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/invited-speakers/cho_jui.jpeg" class="img-fluid rounded-start p-2" alt="Cho-Jui Hsieh", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h5 class="card-title"><a href="https://web.cs.ucla.edu/~chohsieh/"" target="_blank" class="no-underline">Cho-Jui Hsieh</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Associate Professor at UCLA</h6>
+                                    <!-- <p class="card-text mt-auto"><strong>Talk:</strong> Breaking Out of the Problem Set: Self-Discovered Reasoning Environments</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/invited-speakers/yuandong.png" class="img-fluid rounded-start p-2" alt="Yuandong Tian", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h5 class="card-title"><a href="https://yuandong-tian.com/" target="_blank" class="no-underline">Yuandong Tian</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Research Scientist Director in Meta FAIR</h6>
+                                    <!-- <p class="card-text mt-auto"><strong>Talk:</strong> The Importance of Exploration for Test-Time Scaling</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/invited-speakers/sami.jpeg" class="img-fluid rounded-start p-2" alt="Sami Jaghouar", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h5 class="card-title"><a href="https://samsja.github.io/" target="_blank" class="no-underline">Sami Jaghouar</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Founding Research Engineer at Prime Intellect</h6>
+                                    <!-- <p class="card-text mt-auto"><strong>Talk:</strong> The importance of exploration for test-time scaling</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Schedule Section -->
+        <section id="program">
+            <h2 class="my-4 headline-underline">Workshop Schedule</h2>
+            <p>To be announced.</p>
+
+            <div class="container">
+                <!-- <div class="row">
+                    <div class="col"> -->
+                        <!-- <p>
+                            The workshop will be held on <b>Saturday, July 19, 2025, 8.30 a.m. – 5.15 p.m. PDT</b>.
+                            We will be in <b>Room 215-216</b> at Vancouver Convention Center.
+                            All times in the schedule are in PDT (Vancouver local time).
+                        </p> -->
+                    <!-- </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col"><strong>Time</strong></th>
+                                        <th scope="col"><strong>Name</strong></th>
+                                        <th scope="col"><strong>Speaker</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>To</td>
+                                        <td>Be</td>
+                                        <td>Announced</td>
+                                    </tr>
+                                    <tr>
+                                        <td>08:35 - 09:00</td>
+                                        <td>Invited Talk #1: Challenges and Opportunities for Federated Foundation Models</td>
+                                        <td>Han Yu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>09:00 - 09:10</td>
+                                        <td class="text-muted"><span style="text-decoration: line-through">Lightning Talk #1:</span> <a href="https://openreview.net/forum?id=VHzX06shmB" class="text-muted" style="text-decoration: line-through" target="_blank">DBA-DFL: Towards Distributed Backdoor Attacks with Network Detection in Decentralized Federated Learning<i class="bi bi-box-arrow-up-right ms-1"></i></a> (cancelled)</td>
+                                        <td class="text-muted" style="text-decoration: line-through">Bo Hui</td>
+                                    </tr>
+                                    <tr>
+                                        <td>09:10 - 09:20</td>
+                                        <td>Lightning Talk #2: <a href="https://openreview.net/forum?id=QaRYKGk4db" class="a-table" target="_blank">CAF-I: A Collaborative Multi-Agent Framework for Enhanced Irony Detection with Large Language Models<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Ziqi Liu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>09:20 - 09:45</td>
+                                        <td>Invited Talk #2: Federated Reinforcement Learning: Statistical and Communication Trade-offs</td>
+                                        <td>Yuejie Chi</td>
+                                    </tr>
+                                    <tr><td colspan="3"></td></tr>
+                                    <tr class="break-row">
+                                        <td>09:45 - 10:00</td>
+                                        <td>Coffee Break (light breakfast provided by CFAgentic)</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr><td colspan="3"></td></tr>
+                                    <tr>
+                                        <td>10:00 - 10:25</td>
+                                        <td>Invited Talk #3: The Importance of Exploration for Test-Time Scaling</td>
+                                        <td>Aviral Kumar</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:25 - 10:35</td>
+                                        <td><span style="color: darkgoldenrod;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER]</span> Lightning Talk #3: <a href="https://openreview.net/forum?id=3Y3SV2LOlj" class="a-table" target="_blank">MAD-Sherlock: Multi-Agent Debate for Visual Misinformation Detection<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Georgia Channing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:35 - 10:45</td>
+                                        <td>Lightning Talk #4: <a href="https://openreview.net/forum?id=AiEfgKQh2P" class="a-table" target="_blank">Interpretable Multi-Agent Communication via Information Gating<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Stav Belogolovsky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:45 - 11:10</td>
+                                        <td>Invited Talk #4: Collaborative and Federated Agentic AI via AG2</td>
+                                        <td>Chi Wang</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11:10 - 11:35</td>
+                                        <td>Invited Talk #5: Learning over Heterogeneous Networks: From Convergence Analysis to Intelligent Control</td>
+                                        <td>Christopher G. Brinton</td>
+                                    </tr>
+                                    <tr><td colspan="3"></td></tr>
+                                    <tr>
+                                        <td>11:35 - 12:30</td>
+                                        <td>Poster Session</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr class="break-row">
+                                        <td>12:30 - 13:00</td>
+                                        <td>Lunch (provided by ICML conference)</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr><td colspan="3"></td></tr>
+                                    <tr>
+                                        <td>13:00 - 13:25</td>
+                                        <td>Invited Talk #6: Breaking Out of the Problem Set: Self-Discovered Reasoning Environments</td>
+                                        <td>Nick Haber</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13:25 - 13:35</td>
+                                        <td><span style="color: darkgray;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER RUNNER UP]</span> Lightning Talk #5: <a href="https://openreview.net/forum?id=ohXoWHlrn8" class="a-table" target="_blank">AGENT KB: A Hierarchical Memory Framework for Cross-Domain Agentic Problem Solving<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Robert Tang</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13:35 - 13:45</td>
+                                        <td>Lightning Talk #6: <a href="https://openreview.net/forum?id=PuQ5CitOU3" class="a-table" target="_blank">Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Lillian Sun</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13:45 - 13:55</td>
+                                        <td>Lightning Talk #7: <a href="https://openreview.net/forum?id=PcLnHRmZ86" class="a-table" target="_blank">Who Should Be Consulted? Targeted Expert Selection for Rare Disease Diagnosis<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Shuang Li</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13:55 - 14:05</td>
+                                        <td><span style="color: darkgray;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER RUNNER UP]</span> Lightning Talk #8: <a href="https://openreview.net/forum?id=NphowWHYJj" class="a-table" target="_blank">LLMSELECTOR: Learning to Select Models in Compound AI Systems<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Lingjiao Chen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14:05 - 14:30</td>
+                                        <td>Invited Talk #7: Federated AI with Flower: Recent Advancements and Scaling to Production</td>
+                                        <td>William Lindskog-Münzing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14:30 - 14:55</td>
+                                        <td>Invited Talk #8: Building GPU-Accelerated Federated Agents</td>
+                                        <td>Jay Rodge</td>
+                                    </tr>
+                                    <tr><td colspan="3"></td></tr>
+                                    <tr class="break-row">
+                                        <td>14:55 - 15:30</td>
+                                        <td>Coffee Break (snacks provided by CFAgentic)</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr><td colspan="3"></td></tr>
+                                    <tr>
+                                        <td>15:30 - 15:55</td>
+                                        <td>Invited Talk #9: What does it mean for agentic AI to preserve privacy?</td>
+                                        <td>Niloofar Mireshghallah</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15:55 - 16:05</td>
+                                        <td>Lightning Talk #9: <a href="https://openreview.net/forum?id=P77cfCHgCs" class="a-table" target="_blank">MobileA3gent: Training Mobile GUI Agents Using Decentralized Self-Sourced Data from Diverse Users<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Wen-Hao Wang</td>
+                                    </tr>
+                                    <tr>
+                                        <td>16:05 - 16:15</td>
+                                        <td>Lightning Talk #10: <a href="https://openreview.net/forum?id=XeHKCwAITc" class="a-table" target="_blank">Mitigating Unintended Memorization with LoRA in Federated Learning for LLMs<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
+                                        <td>Tahseen Rabbani</td>
+                                    </tr>
+                                    <tr>
+                                        <td>16:15 - 17:15</td>
+                                        <td colspan="2">
+                                            <div class="mb-2"><b>Panel Discussion: Will the future of AI agents be collaborative and federated?</b></div>
+                                            <div class="mb-2">Moderator: <a href="https://shiqiang.wang" target="_blank" class="no-underline">Shiqiang Wang (IBM Research)<i class="bi bi-box-arrow-up-right ms-1"></i></a></div>
+                                            <div class="mb-2">Panelists:</div>
+                                            <ul class="list-unstyled mb-0 " style="margin-left: 15px;">
+                                                <li>• <a href="https://www.linkedin.com/in/williamlindskog/" target="_blank" class="no-underline">William Lindskog-Münzing (Flower Labs)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
+                                                <li>• <a href="https://mireshghallah.github.io/" target="_blank" class="no-underline">Niloofar Mireshghallah (Meta FAIR & CMU)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
+                                                <li>• <a href="https://twr7bm.github.io/" target="_blank" class="no-underline">Tahseen Rabbani (UChicago)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
+                                                <li>• <a href="https://www.linkedin.com/in/chi-wang-autogen/" target="_blank" class="no-underline">Chi Wang (Google DeepMind)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>17:15 - 17:20</td>
+                                        <td>Awards & Closing Remarks</td>
+                                        <td>Organizers</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+<!-- 
+        <section id="accepted-papers">
+            <h2 class="mb-4 headline-underline">Accepted Papers</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="title-column">#</th>
+                            <th class="title-column">Title</th>
+                            <th class="authors-column">Authors</th>
+                            <th class="decision-column">Decision</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><a href="https://openreview.net/forum?id=VHzX06shmB" class="a-table" target="_blank">DBA-DFL: Towards Distributed Backdoor Attacks with Network Detection in Decentralized Federated Learning<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Bohan Liu, Yang Xiao, Ruimeng Ye, Zinan Ling, Xiaolong Ma, Bo Hui</td><td>Oral</td></tr>
+                        <tr><td>2</td><td><a href="https://openreview.net/forum?id=AiEfgKQh2P" class="a-table" target="_blank">Interpretable Multi-Agent Communication via Information Gating<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Stav Belogolovsky, Eran Iceland, Itay Naeh, Ariel Barel, Shie Mannor</td><td>Oral</td></tr>
+                        <tr><td>3</td><td><a href="https://openreview.net/forum?id=PuQ5CitOU3" class="a-table" target="_blank">Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Lillian Sun, Martin Pawelczyk, Zhenting Qi, Aounon Kumar, Himabindu Lakkaraju</td><td>Oral</td></tr>
+                        <tr><td>4</td><td><a href="https://openreview.net/forum?id=XeHKCwAITc" class="a-table" target="_blank">Mitigating Unintended Memorization with LoRA in Federated Learning for LLMs<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Thierry Bossy, Julien Tuấn Tú Vignoud, Tahseen Rabbani, Juan R. Troncoso Pastoriza, Martin Jaggi</td><td>Oral</td></tr>
+                        <tr><td>5</td><td><a href="https://openreview.net/forum?id=PcLnHRmZ86" class="a-table" target="_blank">Who Should Be Consulted? Targeted Expert Selection for Rare Disease Diagnosis<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Yinghao Fu, Chao Yang, Xinye Chen, Yuting Yan, Shuang Li</td><td>Oral</td></tr>
+                        <tr><td>6</td><td><a href="https://openreview.net/forum?id=3Y3SV2LOlj" class="a-table" target="_blank"><span style="color: darkgoldenrod;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER]</span> MAD-Sherlock: Multi-Agent Debate for Visual Misinformation Detection<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Kumud Lakara, Georgia Channing, Juil Sock, Christian Rupprecht, Philip Torr, John Collomosse, Christian Schroeder de Witt</td><td>Oral</td></tr>
+                        <tr><td>7</td><td><a href="https://openreview.net/forum?id=NphowWHYJj" class="a-table" target="_blank"><span style="color: darkgray;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER RUNNER UP]</span> LLMSELECTOR: Learning to Select Models in Compound AI Systems<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Lingjiao Chen, Jared Quincy Davis, Boris Hanin, Peter Bailis, James Zou, Matei Zaharia, Ion Stoica</td><td>Oral</td></tr>
+                        <tr><td>8</td><td><a href="https://openreview.net/forum?id=P77cfCHgCs" class="a-table" target="_blank">MobileA3gent: Training Mobile GUI Agents Using Decentralized Self-Sourced Data from Diverse Users<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>WenHao Wang, Mengying Yuan, Zijie Yu, Guangyi Liu, Rui Ye, Tian Jin, Siheng Chen, Yanfeng Wang</td><td>Oral</td></tr>
+                        <tr><td>9</td><td><a href="https://openreview.net/forum?id=ohXoWHlrn8" class="a-table" target="_blank"><span style="color: darkgray;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER RUNNER UP]</span> AGENT KB: A Hierarchical Memory Framework for Cross-Domain Agentic Problem Solving<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Xiangru Tang, Tianrui Qin, Tianhao Peng, Ziyang Zhou, Daniel Shao, Tingting Du, Xinming Wei, He Zhu, Ge Zhang, Jiaheng Liu, Xingyao Wang, Sirui Hong, Chenglin Wu, Wangchunshu Zhou</td><td>Oral</td></tr>
+                        <tr><td>10</td><td><a href="https://openreview.net/forum?id=QaRYKGk4db" class="a-table" target="_blank">CAF-I: A Collaborative Multi-Agent Framework for Enhanced Irony Detection with Large Language Models<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Ziqi Liu, Ziyang Zhou, Mingxuan Hu</td><td>Oral</td></tr>
+                        <tr><td>11</td><td><a href="https://openreview.net/forum?id=eRlEjF5fK1" class="a-table" target="_blank">DebFlow: Automating Agent Creation via Agent Debate<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Jinwei Su, Yinghui Xia, Ronghua Shi, Jianhui Wang, Jianuo Huang, Yijin Wang, Tianyu Shi, Yang Jingsong, Lewei He</td><td>Poster</td></tr>
+                        <tr><td>12</td><td><a href="https://openreview.net/forum?id=YQduucge6O" class="a-table" target="_blank">Privacy-Enhancing Paradigms within Federated Multi-Agent Systems<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Zitong Shi, Guancheng Wan, Wenke Huang, Guibin Zhang, Jiawei Shao, Mang Ye, Carl Yang</td><td>Poster</td></tr>
+                        <tr><td>13</td><td><a href="https://openreview.net/forum?id=cUp9yvJdPG" class="a-table" target="_blank">LoRA-FL: A Low-Rank Adversarial Attack for Compromising Group Fairness in Federated Learning<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Sankarshan Damle, Ljubomir Rokvic, Venugopal Bhamidi, Manisha Padala, Boi Faltings</td><td>Poster</td></tr>
+                        <tr><td>14</td><td><a href="https://openreview.net/forum?id=ySzGiOFJfN" class="a-table" target="_blank">Position: Agentic Federated Learning for AI-Driven Strategy Design and Optimization<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Haoyuan Li, Jindong Wang, Mathias Funk, Aaqib Saeed</td><td>Poster</td></tr>
+                        <tr><td>15</td><td><a href="https://openreview.net/forum?id=uQsxYDKmoQ" class="a-table" target="_blank">Vision: How to fully unleash the productivity of Agentic AI? Decentralized Agent Swarm Network<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Rui Sun, Zhipeng Wang, Jiahao Sun, Rajiv Ranjan</td><td>Poster</td></tr>
+                        <tr><td>16</td><td><a href="https://openreview.net/forum?id=d0xVxY7FVu" class="a-table" target="_blank">Private Federated Learning with Provable Convergence via Smoothed Normalization<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Egor Shulgin, Sarit Khirirat, Peter Richtárik</td><td>Poster</td></tr>
+                        <tr><td>17</td><td><a href="https://openreview.net/forum?id=qx8NYuQh4v" class="a-table" target="_blank">Parrot: An Agentic Classroom AI<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Kalena Dai, Arya Sarukkai</td><td>Poster</td></tr>
+                        <tr><td>18</td><td><a href="https://openreview.net/forum?id=pBkTqmhMOj" class="a-table" target="_blank">Multiple Automated Finance Integration Agents (MAFIA) With Self-Healing<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Arya Sarukkai, Shaohui Sun, Wei Dai</td><td>Poster</td></tr>
+                        <tr><td>19</td><td><a href="https://openreview.net/forum?id=9oEHyT4Swo" class="a-table" target="_blank">EconEvals: Benchmarks and Litmus Tests for LLM Agents in Unknown Environments<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Sara Fish, Julia Shephard, Minkai Li, Ran I Shorrer, Yannai A. Gonczarowski</td><td>Poster</td></tr>
+                        <tr><td>20</td><td><a href="https://openreview.net/forum?id=TY1skylVRh" class="a-table" target="_blank">CoEM: Collaborative Editable Model<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Kaiwen Tang, Aitong Wu, Guangda Sun</td><td>Poster</td></tr>
+                        <tr><td>21</td><td><a href="https://openreview.net/forum?id=GJuG4cgkX0" class="a-table" target="_blank">Can One Safety Loop Guard Them All? Agentic Guard Rails for Federated Computing<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Narasimha Raghavan Veeraragavan, Jan F Nygård</td><td>Poster</td></tr>
+                        <tr><td>22</td><td><a href="https://openreview.net/forum?id=IHOjkv4iHB" class="a-table" target="_blank">Federated Forgetting in Agentic Workflows: GDPR Compliance Experiments with Synthetic User Logs<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Zichao Li, Zong Ke</td><td>Poster</td></tr>
+                        <tr><td>23</td><td><a href="https://openreview.net/forum?id=guMa1yMr1t" class="a-table" target="_blank">DP-AdamW: Investigating Decoupled Weight Decay and Bias Correction in Private Deep Learning<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Lillian Sun, Kevin Cong, Je Qin Chooi, Russell Li</td><td>Poster</td></tr>
+                        <tr><td>24</td><td><a href="https://openreview.net/forum?id=1RzwmWzU6y" class="a-table" target="_blank">Spatio-Temporal Gradient Matching for Federated Continual Learning<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Duong Minh Nguyen, Le-Tuan Nguyen, Quoc-Viet Pham</td><td>Poster</td></tr>
+                        <tr><td>25</td><td><a href="https://openreview.net/forum?id=v5tF1THvt9" class="a-table" target="_blank">Bidding for Influence: Auction-Driven Diffusion Image Generation<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Lillian Sun, Henry Huang, Fucheng Warren Zhu, Giannis Daras, Constantinos Costis Daskalakis</td><td>Poster</td></tr>
+                        <tr><td>26</td><td><a href="https://openreview.net/forum?id=9D3cgfd7qx" class="a-table" target="_blank">FEDTAIL: Federated Long-Tailed Domain Generalization with Sharpness-Guided Gradient Matching<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Sunny Gupta, Nikita Jangid, Shounak Das, Amit Sethi</td><td>Poster</td></tr>
+                        <tr><td>27</td><td><a href="https://openreview.net/forum?id=mJOTugzKID" class="a-table" target="_blank">Federated Submodular Maximization: Improved Communication Rounds and Bit Complexity<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Sreeharsh Namani, Neophytos Charalambides, Akbar Rafiey</td><td>Poster</td></tr>
+                        <tr><td>28</td><td><a href="https://openreview.net/forum?id=ugGmwvC3v3" class="a-table" target="_blank">Advancing Agentic AI: Decentralized and Verifiable Collaboration for Next-Generation Foundation Model Development<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Arpita Sarker, Arpita Sarker, Alexander Jesser</td><td>Poster</td></tr>
+                        <tr><td>29</td><td><a href="https://openreview.net/forum?id=DJpEIwKJt7" class="a-table" target="_blank">Leveraging Uncertainty Estimation for Efficient LLM Routing<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Tuo Zhang, Asal Mehradfar, Dimitrios Dimitriadis, Salman Avestimehr</td><td>Poster</td></tr>
+                        <tr><td>30</td><td><a href="https://openreview.net/forum?id=tR03CKbPuy" class="a-table" target="_blank">Fluid Democracy in Federated Data Aggregation<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Aditya Vema Reddy Kesari, Krishna Reddy Kesari</td><td>Poster</td></tr>
+                        <tr><td>31</td><td><a href="https://openreview.net/forum?id=YWJYJduVej" class="a-table" target="_blank">Collective Bias Mitigation via Model Routing and Collaboration<i class="bi bi-box-arrow-up-right ms-1"></i></a></td><td>Mingzhe Du, Anh Tuan Luu, Xiaobao Wu, Yichong Huang, Yue Liu, Dong HUANG, Huijun Liu, Bin Ji, Jie M. Zhang, See-Kiong Ng</td><td>Poster</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section> -->
+
+        <!-- <section id="instructions">
+            <h2 class="mb-4 headline-underline">Accepted Paper & Poster Instructions</h2>
+            <p> <span style="text-decoration: underline; font-weight: bold">Paper instructions: </span>
+                You may add 1 page of main content to your paper to address reviewer feedback but technical papers must
+                not exceed 7 pages and position/vision papers must not exceed 5 pages.
+                <b>Please upload your final workshop paper version to OpenReview by June 27, 2025</b>.
+            </p>
+            <p> <span style="text-decoration: underline; font-weight: bold">Poster instructions: </span>
+                Every accepted paper is required to present a poster in our poster session (see schedule).
+                Please note the poster requirements posted here: <a href="https://icml.cc/Conferences/2025/PosterInstructions">ICML Poster Instructions</a>.
+                The following is taken verbatim from the official instructions:
+            </p>
+            <blockquote class="blockquote-modern">
+                Must not exceed 36in (H) x 24in (W) or 91cm (H) x 61cm (W)<br/>
+                Notice: Workshop posters must be in portrait format
+            </blockquote>
+
+            <p><span style="text-decoration: underline; font-weight: bold">Oral instructions: </span>
+                Every Oral (lightning talk) will be 10 minutes long; 8 minutes for presentation and 2 minutes Q&A.
+                You will bring your own laptop and connect to the projector. Every talk will be live-streamed.
+                If you have to give your talk on Zoom (e.g., due to visa issues), you will receive a link ahead of time from SlidesLive.
+            </p>
+
+        </section> -->
+
+        <!-- Organizing Team Section -->
+        <section id="team">
+            <h2 class="mb-4 headline-underline">Organizers</h2>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/devvrit.png" class="img-fluid rounded-start p-2" alt="Devvrit Khatri", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://www.devvrit.com/" target="_blank" class="no-underline">Devvrit Khatri</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">UT Austin</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/rishabh_tiwari.jpg" class="img-fluid rounded-start p-2" alt="Rishabh Tiwari", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://www.rishabhtiwari.org/" target="_blank" class="no-underline">Rishabh Tiwari</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">UC Berkeley</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/gagan.jpg" class="img-fluid rounded-start p-2" alt="Gagan Jain", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://gag-j.github.io/" target="_blank" class="no-underline">Gagan Jain</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Microsoft</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/lovish.jpg" class="img-fluid rounded-start p-2" alt="Lovish Madaan", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://lovishmadaan.github.io/" target="_blank" class="no-underline">Lovish Madaan</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Meta, UCL</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/mihir.jpeg" class="img-fluid rounded-start p-2" alt="Mihir Sanjay Kale", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://www.linkedin.com/in/mkale/" target="_blank" class="no-underline">Mihir Sanjay Kale</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Meta</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/kurt.jpg" class="img-fluid rounded-start p-2" alt="Kurt Keutzer", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://people.eecs.berkeley.edu/~keutzer/" target="_blank" class="no-underline">Kurt Keutzer</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">UC Berkeley</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/inderjit.jpg" class="img-fluid rounded-start p-2" alt="Inderjit Dhillon", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://www.cs.utexas.edu/~inderjit/" target="_blank" class="no-underline">Inderjit Dhillon</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Google, UT Austin</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                <img src="static/organizers/prateek.jpg" class="img-fluid rounded-start p-2" alt="Prateek Jain", style="width: 200px; height: 240px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h5 class="card-title"><a href="https://www.prateekjain.org/" target="_blank" class="no-underline">Prateek Jain</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Google DeepMind</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="reviewers">
+            <h2 class="mb-4 headline-underline">Program Committee</h2>
+            <ul class="list">
+                <li class='list-item'>Abhimanyu Pallavi Sudhir (University of Warwick)</li>
+                <li class='list-item'>Alejandro Alvarez (Independent)</li>
+                <li class='list-item'>Alexander Bienstock (J.P. Morgan Chase)</li>
+                <li class='list-item'>Alicia Yi Sun (Meta AI)</li>
+                <li class='list-item'>Alireza Fallah (University of California  Berkeley)</li>
+                <li class='list-item'>Alp Yurtsever (Umea University)</li>
+                <li class='list-item'>Anirban Das (Capital One)</li>
+                <li class='list-item'>Anran Li (Yale University)</li>
+                <li class='list-item'>Antigoni Polychroniadou (J.P. Morgan AI Research )</li>
+                <li class='list-item'>Aurelien Bellet (INRIA)</li>
+                <li class='list-item'>Baixiang Huang (Emory University)</li>
+                <li class='list-item'>Canyu Chen (Northwestern University)</li>
+                <li class='list-item'>Chao Ren (KTH Royal Institute of Technology)</li>
+                <li class='list-item'>Christian Makaya (HP inc.)</li>
+                <li class='list-item'>Christy Chen (Lila Labs)</li>
+                <li class='list-item'>Chuanhao Li (Yale University)</li>
+                <li class='list-item'>Chulin Xie (University of Illinois  Urbana Champaign)</li>
+                <li class='list-item'>D Reusche (Heliax AG)</li>
+                <li class='list-item'>Ermis Soumalias (Department of Informatics  University of Zurich)</li>
+                <li class='list-item'>Feijie Wu (Purdue University)</li>
+                <li class='list-item'>Gaurav Jain (d-Matrix)</li>
+                <li class='list-item'>Guojun Xiong (Harvard University)</li>
+                <li class='list-item'>Haibo Yang (Rochester Institute of Technology)</li>
+                <li class='list-item'>Hao Yu (University of Minnesota - Twin Cities)</li>
+                <li class='list-item'>Harish Karthikeyan (J.P. Morgan Chase)</li>
+                <li class='list-item'>Jayanth Reddy Regatti (Ohio State University)</li>
+                <li class='list-item'>Jiayi Wang (Oak Ridge National Laboratory)</li>
+                <li class='list-item'>Kuofeng Gao (Tsinghua University)</li>
+                <li class='list-item'>Lili Su (Northeastern University)</li>
+                <li class='list-item'>Lorenzo Sani (University of Cambridge)</li>
+                <li class='list-item'>M. Paul Laiu (Oak Ridge National Laboratory)</li>
+                <li class='list-item'>Manvir Schneider (Cardano Foundation)</li>
+                <li class='list-item'>Minghong Fang (University of Louisville)</li>
+                <li class='list-item'>Muxing Wang (Northeastern University)</li>
+                <li class='list-item'>Narasimha Raghavan Veeraragavan (Cancer Registry of Norway)</li>
+                <li class='list-item'>Neharika Jali (Carnegie Mellon University)</li>
+                <li class='list-item'>Paul Duetting (London School of Economics)</li>
+                <li class='list-item'>Paulo Abelha Ferreira (Dell Technologies)</li>
+                <li class='list-item'>Pengkun Yang (Tsinghua University)</li>
+                <li class='list-item'>Pranay Sharma (Indian Institute of Technology  Bombay)</li>
+                <li class='list-item'>Prashant Khanduri (Wayne State University)</li>
+                <li class='list-item'>Rishi Sharma (EPFL - EPF Lausanne)</li>
+                <li class='list-item'>Rishika Bhagwatkar (Université de Montreal)</li>
+                <li class='list-item'>Roberto Gomez-Espinosa Martin (Universidad Politecnica de Madrid)</li>
+                <li class='list-item'>Samaneh Mohammadi (RISE Research Institutes of Sweden)</li>
+                <li class='list-item'>Santosh Subhashrao Borse (IBM TJ Watson Research Center)</li>
+                <li class='list-item'>Sergio Zaera Mata (HI Iberia)</li>
+                <li class='list-item'>Shravan Nayak (Université de Montreal)</li>
+                <li class='list-item'>Sid Jain (University of Texas at Austin)</li>
+                <li class='list-item'>Siyao Zhou (Nanyang Technological University)</li>
+                <li class='list-item'>Stefanos Laskaridis (Amazon)</li>
+                <li class='list-item'>Steffen Schotthöfer (Oak Ridge National Laboratory)</li>
+                <li class='list-item'>Sunny Gupta (Indian Institute of Technology  Bombay)</li>
+                <li class='list-item'>Tao Yu (Amazon)</li>
+                <li class='list-item'>The-Anh Ta (CSIRO)</li>
+                <li class='list-item'>Vasileios Tsouvalas (Eindhoven University of Technology)</li>
+                <li class='list-item'>Virendra Marathe (Oracle)</li>
+                <li class='list-item'>Wenshuo Guo (University of California  Berkeley)</li>
+                <li class='list-item'>Wenyue Hua (University of California  Santa Barbara)</li>
+                <li class='list-item'>Xianjie Guo (Nanjing University of Posts and Telecommunications)</li>
+                <li class='list-item'>Xiaochun Niu (Northwestern University)</li>
+                <li class='list-item'>Yae Jee Cho (Google)</li>
+                <li class='list-item'>Yang Bai (ByteDance Inc.)</li>
+                <li class='list-item'>Zengqing Wu (Kyoto University)</li>
+                <li class='list-item'>Zexi Li (University of Cambridge)</li>
+                <li class='list-item'>Zhanhong Jiang (Iowa State University)</li>
+                <li class='list-item'>Zhe Li (Rochester Institute of Technology)</li>
+                <li class='list-item'>Zhenheng Tang (The Hong Kong University of Science and Technology)</li>
+            </ul>        
+        </section> -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <div class="text-center">
+                <p>&copy; 2026 Workshop on Scaling Post-Training for LLMs  (SPOT @ ICLR'26) Organizers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
