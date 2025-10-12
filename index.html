@@ -244,24 +244,33 @@
             <div class="col-lg-8">
                 <section id="description">
                     <h2 class="mb-4 headline-underline">About the Workshop</h2>
-                        <p>For the past several years, the research landscape in large language models (LLMs) has been overwhelmingly dominated by advancements in pre-training. The community has made tremendous strides in optimizing every facet of this phase, from novel architectures and attention mechanisms to efficient training algorithms and curated, web-scale datasets. The result has been a series of foundational models with increasingly powerful general capabilities.</p>
-                        
-                        <p>However, we are approaching a potential inflection point. As pre-training methodologies mature and the community converges on best practices, the rate of performance improvement from scaling pre-training alone appears to be decelerating. This emerging plateau has catalyzed a critical shift in focus towards a new frontier for model improvement: post-training.</p>
-                        
-                        <p>Post-training, encompassing techniques like Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), is no longer a mere final step for task-specific adaptation. It is evolving into a compute-intensive phase in its own right, crucial for unlocking the full potential of foundational models and optimizing for critical downstream behaviors, particularly those related to inference-time efficiency and safety. Yet, the science of post-training, especially at scale, remains in its infancy.</p>
-                        
-                        <p>This workshop is motivated by the urgent need to <b>establish rigorous and scalable methodologies, design choices, and approaches for post-training</b>. While today's design choices in pre-training are made with a core focus on their ability to scale, a similar "scaling laws" mindset for post-training is largely absent. We are only beginning to scratch the surface of fundamental questions across the entire stack. This includes, and is not limited to:</p>                       
+                        <p>Post-training, encompassing techniques like Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), is no longer a mere final step for task-specific adaptation. It is evolving into a compute-intensive phase in its own right, crucial for unlocking the full potential of foundational models and optimizing for critical downstream behaviors. Yet, the science of post-training, at scale, remains in its infancy.</p>
+
+                        <p>Both the academic and industrial research landscape is already signaling the importance of this shift. While models from organizations like DeepSeek and xAI (with Grok) have reportedly dedicated post-training compute budgets that are a significant fraction of their pre-training compute, academic labs are focusing on developing principled ways to scale post-training and democratizing frameworks like SkyRL. This dramatic increase in RL compute is only growing across frontier LLM generations, with more than 10× increase from o1 to o3 and a similar leap from Grok-3 to Grok-4. This demonstrates that scaling post-training is both a future-looking academic question as well as a present-day industrial imperative.</p>
+
+                        <p>This <b>Workshop on Scaling Post-Training for LLMs (SPOT)</b> is motivated by the urgent need to <b>establish rigorous and scalable methodologies, design choices, and approaches for post-training</b>. While today’s design choices in pre-training are made with a core focus on their ability to scale, a similar "scaling laws" mindset for post-training is largely absent. Our goal is to catalyze a systematic understanding of how post-training scales, across algorithms, data regimes, infrastructure, and objectives, and to identify the open questions that must be addressed to turn post-training into a science of its own.</p>
+
+                        <p>While many existing workshops focus on specific applications of post-training, such as reasoning, planning, or agentic behavior, our goal is distinct. This workshop centers on the foundational principles that make post-training itself scale effectively, regardless of its end use. We aim to examine the design choices and bottlenecks that influence post-training efficiency, stability, and asymptotic performance across all paradigms—SFT, RL, and beyond.</p>
+
+                        <p><b>Overview of Discussion Topics</b> – The workshop will cover a range of topics, including, but not limited to:</p>
+
                         <ul>
-                         <li> <u>Algorithms:</u> What SFT and RL algorithms and reward modeling strategies are most effective and compute-efficient?</li>
-                         <li> <u>Systems & Infrastructure:</u> How do we build the systems and infrastructure to handle massive-scale RL, which presents a far more complex engineering challenge than pre-training?</li>
-                         <li> <u>Model Architecture:</u> Is a single, unified post-trained model the optimal path, or should we focus on developing ecosystems of specialized models that can be orchestrated as agents?</li>
-                         <li> <u>Data:</u> Understanding quantity, quality, and diversity of data required for SFT or RL, and how does their interplay affect each other?</li>
-                         <li> <u>Environment:</u> Developing the foundational environments and sandboxes necessary to apply large-scale RL to complex domains beyond code and mathematics.</li>
-                         <li> <u>Verification:</u> Addressing verification as a critical bottleneck, where the cost of evaluating model outputs can even surpass that of the RL rollouts themselves.</li>
-                        </ul> 
-                        <p>The industrial research landscape is already signaling the importance of this shift. Recent models from organizations like DeepSeek and xAI (with Grok) have reportedly dedicated post-training compute budgets that are a significant fraction, in some cases, nearly equal to their pre-training compute. This demonstrates that scaling post-training is not a future-looking academic question but a present-day industrial imperative.</p>
-                        
-                        <p>This workshop aims to bring together researchers and practitioners from academia and industry to address this critical gap. Our goal is to consolidate our nascent understanding, share best practices, and collectively chart a research agenda for what works in LLM post-training at scale.</p>
+                        <li><u>Algorithmic insights to scaling Post-training effectively:</u> Which SFT and RL formulations, objective choices, and reward-modeling strategies enable stable and compute-efficient scaling? Each of these factors impacts both the asymptotic performance attainable at scale and the sample efficiency required to reach it. An ideal goal is to understand how such algorithmic insights can be unified into a scaling-law perspective for post-training.</li>
+
+                        <li><u>Specialized systems to accelerate Post-training:</u> Large-scale post-training introduces unique engineering bottlenecks, often distinct from pre-training. Topics such as training–inference kernel mismatches, rollout latency, distributed training and inference, or KV-cache management under long contexts directly affect scalability and throughput, and hence efficiency of post-training.</li>
+
+                        <li><u>Architectural choices and their impact at scale:</u> Architectural advances, such as local-global attention and sparse mixture-of-experts (MoE), have redefined the compute–capability tradeoff in post-training. Similar fundamental questions remain: Is a single, unified post-trained model the optimal path, or should we focus on developing ecosystems of specialized models that can be orchestrated as agents? How do architectural choices influence sample efficiency, generalization, and stability at scale?</li>
+
+                        <li><u>Role of Data in scaling Post-training:</u> Data remains a central driver of performance and efficiency at scale. In pre-training, it’s known to affect both performance and efficiency. We need to understand data’s corresponding principles in post-training. Moreover, as the scale of post-training continues to grow, new questions emerge around the role of synthetic data—its scaling laws, diversity, and impact on generalization.</li>
+
+                        <li><u>Environment design and safety in real-world Post-training:</u> Post-training expands beyond code and mathematics into multimodal, embodied, and experimental domains that require lab-based or physically grounded setups (e.g., RL for scientific discovery). Each introduces distinct challenges for environment design, evaluation fidelity, and safety.</li>
+
+                        <li><u>Efficient and Dense Feedback from the environment:</u> As models grow larger and tasks more complex, verifying post-training outcomes has become a major bottleneck. In many cases, evaluation cost rivals or exceeds training cost. Building efficient and dense verification methods remains central to scalable post-training.</li>
+                        </ul>
+
+                        <p>This workshop aims to bring together diverse perspectives from academic and industrial researchers and practitioners, to share practical experiences, and to outline a clear research direction toward building a principled science of post-training at scale.</p>
+
+
                 </section>
                 <section id="cfp">
                     
@@ -312,15 +321,15 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Paper Submission Deadline
-                                <span class="badge bg-secondary">To be announced</span>
+                                <span class="badge bg-secondary">January 30, 2026</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">  <!-- <style="text-decoration: line-through"> -->
                                 Author Notification
-                                <span class="badge bg-secondary">To be announced</span>
+                                <span class="badge bg-secondary">February 27, 2026</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Camera-Ready Deadline*
-                                <span class="badge bg-secondary">To be announced</span>
+                                <span class="badge bg-secondary">April 01, 2026</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Workshop Date
@@ -543,181 +552,110 @@
 
         <!-- Schedule Section -->
         <section id="program">
-            <h2 class="my-4 headline-underline">Workshop Schedule</h2>
-            <p>To be announced.</p>
+            <h2 class="my-4 headline-underline">Tentative Workshop Schedule</h2>
+            <!-- <p>To be announced.</p> -->
 
             <div class="container">
                 <!-- <div class="row">
-                    <div class="col"> -->
-                        <!-- <p>
+                    <div class="col">
+                        <p>
                             The workshop will be held on <b>Saturday, July 19, 2025, 8.30 a.m. – 5.15 p.m. PDT</b>.
                             We will be in <b>Room 215-216</b> at Vancouver Convention Center.
                             All times in the schedule are in PDT (Vancouver local time).
-                        </p> -->
-                    <!-- </div>
+                        </p>
+                    </div>
                 </div> -->
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col">
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
                                 <thead class="table-dark">
                                     <tr>
                                         <th scope="col"><strong>Time</strong></th>
-                                        <th scope="col"><strong>Name</strong></th>
-                                        <th scope="col"><strong>Speaker</strong></th>
+                                        <th scope="col"><strong>Arrangement</strong></th>
+                                        <!-- <th scope="col"><strong>Speaker</strong></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>To</td>
-                                        <td>Be</td>
-                                        <td>Announced</td>
+                                        <td>08:50 - 09:00</td>
+                                        <td>Introduction & Opening Remarks</td>
+                                        <!-- <td>TBD</td> -->
+                                    <tr>
+                                        <td>09:00 - 09:35</td>
+                                        <td>Invited Talk #1</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>08:35 - 09:00</td>
-                                        <td>Invited Talk #1: Challenges and Opportunities for Federated Foundation Models</td>
-                                        <td>Han Yu</td>
+                                        <td>09:35 - 10:10</td>
+                                        <td>Invited Talk #2</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>09:00 - 09:10</td>
-                                        <td class="text-muted"><span style="text-decoration: line-through">Lightning Talk #1:</span> <a href="https://openreview.net/forum?id=VHzX06shmB" class="text-muted" style="text-decoration: line-through" target="_blank">DBA-DFL: Towards Distributed Backdoor Attacks with Network Detection in Decentralized Federated Learning<i class="bi bi-box-arrow-up-right ms-1"></i></a> (cancelled)</td>
-                                        <td class="text-muted" style="text-decoration: line-through">Bo Hui</td>
+                                        <td>10:10 - 10:40</td>
+                                        <td>Oral Presentations (3 presentations, 10 mins each)</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
-                                    <tr>
-                                        <td>09:10 - 09:20</td>
-                                        <td>Lightning Talk #2: <a href="https://openreview.net/forum?id=QaRYKGk4db" class="a-table" target="_blank">CAF-I: A Collaborative Multi-Agent Framework for Enhanced Irony Detection with Large Language Models<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Ziqi Liu</td>
-                                    </tr>
-                                    <tr>
-                                        <td>09:20 - 09:45</td>
-                                        <td>Invited Talk #2: Federated Reinforcement Learning: Statistical and Communication Trade-offs</td>
-                                        <td>Yuejie Chi</td>
-                                    </tr>
-                                    <tr><td colspan="3"></td></tr>
                                     <tr class="break-row">
-                                        <td>09:45 - 10:00</td>
-                                        <td>Coffee Break (light breakfast provided by CFAgentic)</td>
-                                        <td>--</td>
-                                    </tr>
-                                    <tr><td colspan="3"></td></tr>
-                                    <tr>
-                                        <td>10:00 - 10:25</td>
-                                        <td>Invited Talk #3: The Importance of Exploration for Test-Time Scaling</td>
-                                        <td>Aviral Kumar</td>
+                                        <td>10:40 - 11:00</td>
+                                        <td>Coffee Break</td>
+                                        <!-- <td>Ziqi Liu</td> -->
                                     </tr>
                                     <tr>
-                                        <td>10:25 - 10:35</td>
-                                        <td><span style="color: darkgoldenrod;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER]</span> Lightning Talk #3: <a href="https://openreview.net/forum?id=3Y3SV2LOlj" class="a-table" target="_blank">MAD-Sherlock: Multi-Agent Debate for Visual Misinformation Detection<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Georgia Channing</td>
+                                        <td>11:00 - 11:35</td>
+                                        <td>Invited Talk #3</td>
+                                        <!-- <td>Yuejie Chi</td> -->
                                     </tr>
-                                    <tr>
-                                        <td>10:35 - 10:45</td>
-                                        <td>Lightning Talk #4: <a href="https://openreview.net/forum?id=AiEfgKQh2P" class="a-table" target="_blank">Interpretable Multi-Agent Communication via Information Gating<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Stav Belogolovsky</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10:45 - 11:10</td>
-                                        <td>Invited Talk #4: Collaborative and Federated Agentic AI via AG2</td>
-                                        <td>Chi Wang</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11:10 - 11:35</td>
-                                        <td>Invited Talk #5: Learning over Heterogeneous Networks: From Convergence Analysis to Intelligent Control</td>
-                                        <td>Christopher G. Brinton</td>
-                                    </tr>
-                                    <tr><td colspan="3"></td></tr>
                                     <tr>
                                         <td>11:35 - 12:30</td>
-                                        <td>Poster Session</td>
-                                        <td>--</td>
+                                        <td>Poster Session 1</td>
+                                        <!-- <td>Yuejie Chi</td> -->
                                     </tr>
                                     <tr class="break-row">
-                                        <td>12:30 - 13:00</td>
-                                        <td>Lunch (provided by ICML conference)</td>
-                                        <td>--</td>
-                                    </tr>
-                                    <tr><td colspan="3"></td></tr>
-                                    <tr>
-                                        <td>13:00 - 13:25</td>
-                                        <td>Invited Talk #6: Breaking Out of the Problem Set: Self-Discovered Reasoning Environments</td>
-                                        <td>Nick Haber</td>
+                                        <td>12:30 - 13:30</td>
+                                        <td>Lunch (provided by ICLR conference)</td>
+                                        <!-- <td>--</td> -->
                                     </tr>
                                     <tr>
-                                        <td>13:25 - 13:35</td>
-                                        <td><span style="color: darkgray;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER RUNNER UP]</span> Lightning Talk #5: <a href="https://openreview.net/forum?id=ohXoWHlrn8" class="a-table" target="_blank">AGENT KB: A Hierarchical Memory Framework for Cross-Domain Agentic Problem Solving<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Robert Tang</td>
+                                        <td>13:30 - 14:05</td>
+                                        <td>Invited Talk #4</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>13:35 - 13:45</td>
-                                        <td>Lightning Talk #6: <a href="https://openreview.net/forum?id=PuQ5CitOU3" class="a-table" target="_blank">Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Lillian Sun</td>
+                                        <td>14:05 - 14:40</td>
+                                        <td>Invited Talk #5</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>13:45 - 13:55</td>
-                                        <td>Lightning Talk #7: <a href="https://openreview.net/forum?id=PcLnHRmZ86" class="a-table" target="_blank">Who Should Be Consulted? Targeted Expert Selection for Rare Disease Diagnosis<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Shuang Li</td>
+                                        <td>14:40 - 15:10</td>
+                                        <td>Oral Presentations (3 presentations, 10 mins each)</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>13:55 - 14:05</td>
-                                        <td><span style="color: darkgray;"><i class="bi bi-award-fill ms-1"></i> [BEST PAPER RUNNER UP]</span> Lightning Talk #8: <a href="https://openreview.net/forum?id=NphowWHYJj" class="a-table" target="_blank">LLMSELECTOR: Learning to Select Models in Compound AI Systems<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Lingjiao Chen</td>
+                                        <td>15:10 - 15:45</td>
+                                        <td>Invited Talk #5</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>14:05 - 14:30</td>
-                                        <td>Invited Talk #7: Federated AI with Flower: Recent Advancements and Scaling to Production</td>
-                                        <td>William Lindskog-Münzing</td>
+                                        <td>15:45 - 16:45</td>
+                                        <td>Panel Discussion: Prospects & Pitfalls of Scaling Post-Training of LLMs</td>
+                                        <!-- <td>TBD</td> -->
                                     </tr>
                                     <tr>
-                                        <td>14:30 - 14:55</td>
-                                        <td>Invited Talk #8: Building GPU-Accelerated Federated Agents</td>
-                                        <td>Jay Rodge</td>
-                                    </tr>
-                                    <tr><td colspan="3"></td></tr>
-                                    <tr class="break-row">
-                                        <td>14:55 - 15:30</td>
-                                        <td>Coffee Break (snacks provided by CFAgentic)</td>
-                                        <td>--</td>
-                                    </tr>
-                                    <tr><td colspan="3"></td></tr>
-                                    <tr>
-                                        <td>15:30 - 15:55</td>
-                                        <td>Invited Talk #9: What does it mean for agentic AI to preserve privacy?</td>
-                                        <td>Niloofar Mireshghallah</td>
+                                        <td>16:45 - 17:45</td>
+                                        <td>Poster Session 2</td>
+                                        <!-- <td>Yuejie Chi</td> -->
                                     </tr>
                                     <tr>
-                                        <td>15:55 - 16:05</td>
-                                        <td>Lightning Talk #9: <a href="https://openreview.net/forum?id=P77cfCHgCs" class="a-table" target="_blank">MobileA3gent: Training Mobile GUI Agents Using Decentralized Self-Sourced Data from Diverse Users<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Wen-Hao Wang</td>
-                                    </tr>
-                                    <tr>
-                                        <td>16:05 - 16:15</td>
-                                        <td>Lightning Talk #10: <a href="https://openreview.net/forum?id=XeHKCwAITc" class="a-table" target="_blank">Mitigating Unintended Memorization with LoRA in Federated Learning for LLMs<i class="bi bi-box-arrow-up-right ms-1"></i></a></td>
-                                        <td>Tahseen Rabbani</td>
-                                    </tr>
-                                    <tr>
-                                        <td>16:15 - 17:15</td>
-                                        <td colspan="2">
-                                            <div class="mb-2"><b>Panel Discussion: Will the future of AI agents be collaborative and federated?</b></div>
-                                            <div class="mb-2">Moderator: <a href="https://shiqiang.wang" target="_blank" class="no-underline">Shiqiang Wang (IBM Research)<i class="bi bi-box-arrow-up-right ms-1"></i></a></div>
-                                            <div class="mb-2">Panelists:</div>
-                                            <ul class="list-unstyled mb-0 " style="margin-left: 15px;">
-                                                <li>• <a href="https://www.linkedin.com/in/williamlindskog/" target="_blank" class="no-underline">William Lindskog-Münzing (Flower Labs)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
-                                                <li>• <a href="https://mireshghallah.github.io/" target="_blank" class="no-underline">Niloofar Mireshghallah (Meta FAIR & CMU)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
-                                                <li>• <a href="https://twr7bm.github.io/" target="_blank" class="no-underline">Tahseen Rabbani (UChicago)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
-                                                <li>• <a href="https://www.linkedin.com/in/chi-wang-autogen/" target="_blank" class="no-underline">Chi Wang (Google DeepMind)<i class="bi bi-box-arrow-up-right ms-1"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>17:15 - 17:20</td>
-                                        <td>Awards & Closing Remarks</td>
-                                        <td>Organizers</td>
+                                        <td>17:45 - 18:00</td>
+                                        <td>Paper Awards and Closing Remarks</td>
+                                        <!-- <td>Lillian Sun</td> -->
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </section>
 <!-- 
