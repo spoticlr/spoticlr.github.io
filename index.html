@@ -6,13 +6,13 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:description" content="ICLR 2026 Workshop on Scaling Post-Training for LLMs">
-    <meta property="og:title" content="SPOT @ ICLR 2026 (Under Review)">
+    <meta property="og:title" content="SPOT @ ICLR 2026">
     <meta property="og:url" content="https://spoticlr.github.io">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SPOT @ ICLR'26 (Under Review)">
+    <meta name="twitter:title" content="SPOT @ ICLR'26">
     <meta name="twitter:description" content="ICLR 2026 Workshop on Scaling Post-Training for LLMs">
     <meta name="twitter:image" content="https://spoticlr.github.io/static/workshop.png">
     
@@ -232,7 +232,7 @@
     <div class="hero-section">
         <div class="text-center">
             <h1>ICLR 2026 Workshop on Scaling Post-training for LLMs</h1>
-            <h2>SPOT @ ICLR'26 (Under Review)</h2>
+            <h2>SPOT @ ICLR'26</h2>
             <!-- <p class="lead">Room 215-216, Vancouver Convention Center, Canada - Saturday, July 19, 2025</p> -->
             <img src="https://iclr.cc/static/core/img/ICLR-logo.svg" alt="ICLR Conference Logo" style="max-width: 200px; margin-top: 15px;">
         </div>
@@ -243,35 +243,58 @@
         <div class="row">
             <div class="col-lg-8">
                 <section id="description">
-                    <h2 class="mb-4 headline-underline">About the Workshop</h2>
-                        <p>Post-training, encompassing techniques like Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), is no longer a mere final step for task-specific adaptation. It is evolving into a compute-intensive phase in its own right, crucial for unlocking the full potential of foundational models and optimizing for critical downstream behaviors. Yet, the science of post-training, at scale, remains in its infancy.</p>
+                <h2 class="mb-4 headline-underline">About the Workshop</h2>
 
-                        <p>Both the academic and industrial research landscape is already signaling the importance of this shift. While models from organizations like DeepSeek and xAI (with Grok) have reportedly dedicated post-training compute budgets that are a significant fraction of their pre-training compute, academic labs are focusing on developing principled ways to scale post-training and democratizing frameworks like SkyRL. This dramatic increase in RL compute is only growing across frontier LLM generations, with more than 10× increase from o1 to o3 and a similar leap from Grok-3 to Grok-4. This demonstrates that scaling post-training is both a future-looking academic question as well as a present-day industrial imperative.</p>
+                <p>
+                    Post-training—spanning Supervised Fine-Tuning (SFT), Reinforcement Learning (RL), and beyond 
+                    is no longer a final adaptation step. It has become a <b>compute-intensive, first-class phase</b>
+                    that increasingly determines the capabilities, safety, and efficiency of large language models.
+                    Yet, despite its growing importance, <b>post-training at scale remains poorly understood</b>.
+                </p>
 
-                        <p>This <b>Workshop on Scaling Post-Training for LLMs (SPOT)</b> is motivated by the urgent need to <b>establish rigorous and scalable methodologies, design choices, and approaches for post-training</b>. While today’s design choices in pre-training are made with a core focus on their ability to scale, a similar "scaling laws" mindset for post-training is largely absent. Our goal is to catalyze a systematic understanding of how post-training scales, across algorithms, data regimes, infrastructure, and objectives, and to identify the open questions that must be addressed to turn post-training into a science of its own.</p>
+                <p>
+                    Recent frontier models allocate a substantial and rapidly growing fraction of total compute to
+                    post-training, while academic efforts are only beginning to develop principled, scalable
+                    methodologies. Unlike pre-training, where scaling laws and design trade-offs are well studied,
+                    post-training lacks a comparable scientific framework.
+                </p>
 
-                        <p>While many existing workshops focus on specific applications of post-training, such as reasoning, planning, or agentic behavior, our goal is distinct. This workshop centers on the foundational principles that make post-training itself scale effectively, regardless of its end use. We aim to examine the design choices and bottlenecks that influence post-training efficiency, stability, and asymptotic performance across all paradigms—SFT, RL, and beyond.</p>
+                <p>
+                    The <b>Workshop on Scaling Post-Training for LLMs (SPOT)</b> aims to address this gap by focusing on
+                    the <b>foundational principles that make post-training scale</b>, across algorithms, data,
+                    architectures, systems, and objectives. Rather than targeting specific applications, SPOT centers
+                    on understanding the design choices, bottlenecks, and trade-offs that govern efficiency,
+                    stability, and asymptotic performance in large-scale post-training.
+                </p>
 
-                        <p><b>Overview of Discussion Topics</b> – The workshop will cover a range of topics, including, but not limited to:</p>
+                <p><b>Topics of interest include:</b></p>
 
-                        <ul>
-                        <li><u>Algorithmic insights to scaling Post-training effectively:</u> Which SFT and RL formulations, objective choices, and reward-modeling strategies enable stable and compute-efficient scaling? Each of these factors impacts both the asymptotic performance attainable at scale and the sample efficiency required to reach it. An ideal goal is to understand how such algorithmic insights can be unified into a scaling-law perspective for post-training.</li>
+                <ul>
+                    <li><b>Algorithms:</b> SFT and RL formulations, reward modeling, and objectives that enable
+                        stable and compute-efficient scaling.</li>
 
-                        <li><u>Specialized systems to accelerate Post-training:</u> Large-scale post-training introduces unique engineering bottlenecks, often distinct from pre-training. Topics such as training–inference kernel mismatches, rollout latency, distributed training and inference, or KV-cache management under long contexts directly affect scalability and throughput, and hence efficiency of post-training.</li>
+                    <li><b>Systems:</b> Infrastructure challenges unique to post-training, including rollout
+                        latency, training–inference mismatches, distributed execution, and KV-cache management.</li>
 
-                        <li><u>Architectural choices and their impact at scale:</u> Architectural advances, such as local-global attention and sparse mixture-of-experts (MoE), have redefined the compute–capability tradeoff in post-training. Similar fundamental questions remain: Is a single, unified post-trained model the optimal path, or should we focus on developing ecosystems of specialized models that can be orchestrated as agents? How do architectural choices influence sample efficiency, generalization, and stability at scale?</li>
+                    <li><b>Architectures:</b> The impact of design choices such as MoE, sparse attention, and
+                        model specialization on sample efficiency and generalization.</li>
 
-                        <li><u>Role of Data in scaling Post-training:</u> Data remains a central driver of performance and efficiency at scale. In pre-training, it’s known to affect both performance and efficiency. We need to understand data’s corresponding principles in post-training. Moreover, as the scale of post-training continues to grow, new questions emerge around the role of synthetic data—its scaling laws, diversity, and impact on generalization.</li>
+                    <li><b>Data:</b> The role of data curation and synthetic data in scaling post-training and
+                        shaping generalization.</li>
 
-                        <li><u>Environment design and safety in real-world Post-training:</u> Post-training expands beyond code and mathematics into multimodal, embodied, and experimental domains that require lab-based or physically grounded setups (e.g., RL for scientific discovery). Each introduces distinct challenges for environment design, evaluation fidelity, and safety.</li>
+                    <li><b>Environments & Safety:</b> Post-training in multimodal, embodied, and real-world
+                        settings, with emphasis on evaluation fidelity and safety.</li>
 
-                        <li><u>Efficient and Dense Feedback from the environment:</u> As models grow larger and tasks more complex, verifying post-training outcomes has become a major bottleneck. In many cases, evaluation cost rivals or exceeds training cost. Building efficient and dense verification methods remains central to scalable post-training.</li>
-                        </ul>
+                    <li><b>Feedback & Verification:</b> Efficient, dense feedback mechanisms as evaluation costs
+                        increasingly rival training costs.</li>
+                </ul>
 
-                        <p>This workshop aims to bring together diverse perspectives from academic and industrial researchers and practitioners, to share practical experiences, and to outline a clear research direction toward building a principled science of post-training at scale.</p>
-
-
+                <p>
+                    SPOT brings together academic and industrial researchers to share experiences, identify open
+                    challenges, and move toward a <b>principled science of post-training at scale</b>.
+                </p>
                 </section>
+
                 <section id="cfp">
                     
                     <h2 class="mb-4 headline-underline">Call for Papers</h2>
@@ -285,26 +308,10 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled">
-                            <!-- <li class="mb-3">
-                                <div class="small text-muted">July 20, 2025</div>
-                                <div><b>The CFAgentic@ICML'25 workshop was a full success.</b> We would like to thank everyone for their in-person and virtual contributions. We really enjoyed the lively and thought-provoking discussions throughout the workshop day!</div>
-                            </li>
                             <li class="mb-3">
-                                <div class="small text-muted">May 25, 2025</div>
-                                <div><b>Final deadline extension</b> to May 27, 2025 11.59pm AoE due to popular demand.</div>
+                                <div class="small text-muted">December 1, 2025</div>
+                                <div>SPOT is among the 40 accepted ICLR workshops! Gearing up for Rio!</div>
                             </li>
-                            <li class="mb-3">
-                                <div class="small text-muted">May 19, 2025</div>
-                                <div><b>Deadline extended</b> to May 25, 2025 11.59pm AoE due to many requests related to the NeurIPS deadline.</div>
-                            </li>
-                            <li class="mb-3">
-                                <div class="small text-muted">May 09, 2025</div>
-                                <div>Workshop date set: Saturday, July 19, 2025 in Room 215-216.</div>
-                            </li>
-                            <li class="mb-3">
-                                <div class="small text-muted">April 02, 2025</div>
-                                <div>OpenReview <a href="https://openreview.net/group?id=ICML.cc/2025/Workshop/CFAgentic">submission portal</a> now available.</div>
-                            </li> -->
                             <li class="mb-3">
                                 <div class="small text-muted">October 10, 2025</div>
                                 <div>Workshop proposal submitted to ICLR 2026!</div>
