@@ -36,6 +36,11 @@
             background-color: darkgreen !important;
         }
 
+        /* Light green background for right pane card bodies */
+        .right-pane-card-body {
+            background-color: #e6f9e6 !important;
+        }
+
         a {
             color: black;
             text-decoration: underline;
@@ -266,73 +271,90 @@
                     on understanding the design choices, bottlenecks, and trade-offs that govern efficiency,
                     stability, and asymptotic performance in large-scale post-training.
                 </p>
-
-                <p><b>Topics of interest include:</b></p>
-
-                <ul>
-                    <li><b>Algorithms:</b> SFT and RL formulations, reward modeling, and objectives that enable
-                        stable and compute-efficient scaling.</li>
-
-                    <li><b>Systems:</b> Infrastructure challenges unique to post-training, including rollout
-                        latency, training–inference mismatches, distributed execution, and KV-cache management.</li>
-
-                    <li><b>Architectures:</b> The impact of design choices such as MoE, sparse attention, and
-                        model specialization on sample efficiency and generalization.</li>
-
-                    <li><b>Data:</b> The role of data curation and synthetic data in scaling post-training and
-                        shaping generalization.</li>
-
-                    <li><b>Environments & Safety:</b> Post-training in multimodal, embodied, and real-world
-                        settings, with emphasis on evaluation fidelity and safety.</li>
-
-                    <li><b>Feedback & Verification:</b> Efficient, dense feedback mechanisms as evaluation costs
-                        increasingly rival training costs.</li>
-                </ul>
-
-                <p>
-                    SPOT brings together academic and industrial researchers to share experiences, identify open
-                    challenges, and move toward a <b>principled science of post-training at scale</b>.
-                </p>
                 </section>
 
                 <section id="cfp">
-                    
                     <h2 class="mb-4 headline-underline">Call for Papers</h2>
-                        <p>To be announced.</p>
+
+                    <p>We are excited to invite submissions to the <b>ICLR 2026 Workshop on Scaling Post-Training for LLMs (SPOT)</b>. SPOT aims to bring together academic and industrial researchers to share experiences, identify open challenges, and move toward a <b>principled science of post-training at scale</b>.</p>
+
+                    <p><h5>Submission Guidelines</h5></p>
+                    <p>Topics of interest include, but are not limited to:</p>
+                    <ul>
+                        <li><b>Algorithms:</b> SFT and RL formulations, reward modeling, and objectives that enable
+                            stable and compute-efficient scaling.</li>
+
+                        <li><b>Systems:</b> Infrastructure challenges unique to post-training, including rollout
+                            latency, training–inference mismatches, distributed execution, and KV-cache management.</li>
+
+                        <li><b>Architectures:</b> The impact of design choices such as MoE, sparse attention, and
+                            model specialization on sample efficiency and generalization.</li>
+
+                        <li><b>Data:</b> The role of data curation and synthetic data in scaling post-training and
+                            shaping generalization.</li>
+
+                        <li><b>Environments & Safety:</b> Post-training in multimodal, embodied, and real-world
+                            settings, with emphasis on evaluation fidelity and safety.</li>
+
+                        <li><b>Feedback & Verification:</b> Efficient, dense feedback mechanisms as evaluation costs
+                            increasingly rival training costs.</li>
+                    </ul>
+
+                    <p><h5>Submission Format</h5></p>
+                    <ul><li>Submissions must be original, unpublished work, and not under review elsewhere.</li>
+                        <li>Long Papers should be at most <b>8 pages</b> long (excluding references and appendices).</li>
+                        <li>Short/Tiny Papers should be at most <b>4 pages</b> long (excluding references and appendices).</li>
+                        <li>Submissions must be in LaTeX format using the ICLR 2026 conference style.</li>
+                        <li>All submissions will be reviewed in a <b>double-blind</b> manner, and authors must anonymize their manuscripts</li>
+                        <li>We encourage at least <b>one author per submission to serve as a reviewer</b> for our workshop.</li>
+                    </ul>
+                
+                    <p><h5>Accepted Submissions</h5></p>
+                    <p>Accepted papers will be presented as <b>talks</b> or <b>posters</b> during the workshop. The workshop will select the best paper(s) to recognize outstanding contributions in the field.</p>
+
+                    <p><h5>Non-Proceedings Policy</h5></p>
+                    <p>This workshop does not produce formal proceedings. Accepted submissions will appear on OpenReview, but authors remain free to submit and publish their work elsewhere in the future.</p>
+
+                    <p><h5>Submission Portal</h5></p>
+                    <p>Submit your paper through the <a href="https://openreview.net/group?id=ICLR.cc/2026/Workshop/SPOT" target="_blank" class="text-decoration-none">
+                        OpenReview Submission Portal
+                        <i class="bi bi-box-arrow-up-right ms-1"></i></a>.</p>
+                    <p>For inquiries, please contact us at <a href="mailto:spoticlr@gmail.com" class="text-decoration-none">spoticlr@gmail.com<i class="bi bi-box-arrow-up-right ms-1"></i></a>.</p>
+                </section>
                 </section>
             </div>
             <div class="col-lg-4 mt-4">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">News</h5>
-                    </div>
-                    <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">News</h5>
+                        </div>
+                        <div class="card-body right-pane-card-body">
                         <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <div class="small text-muted">January 5, 2026</div>
+                                <div>Call for Papers is up! The submission deadline is <b>February 5, 2026 (AOE)</b>.</div>
+                            </li>
                             <li class="mb-3">
                                 <div class="small text-muted">December 1, 2025</div>
                                 <div>SPOT is among the 40 accepted ICLR workshops! Gearing up for Rio!</div>
-                            </li>
-                            <li class="mb-3">
-                                <div class="small text-muted">October 10, 2025</div>
-                                <div>Workshop proposal submitted to ICLR 2026!</div>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Important Dates</h5>
-                    </div>
-                    <div class="card-body">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Important Dates</h5>
+                        </div>
+                        <div class="card-body right-pane-card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Paper Submission Deadline
-                                <span class="badge bg-secondary">January 30, 2026</span>
+                                <span class="badge bg-secondary">February 05, 2026</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">  <!-- <style="text-decoration: line-through"> -->
                                 Author Notification
-                                <span class="badge bg-secondary">February 27, 2026</span>
+                                <span class="badge bg-secondary">March 01, 2026</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Camera-Ready Deadline*
@@ -340,20 +362,21 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Workshop Date
-                                <span class="badge bg-secondary">To be announced</span>
+                                <span class="badge bg-secondary">April 26/27, 2026</span>
                             </li>
                         </ul>
                     </div>
                     <div class="card-footer">
                         <small>*The workshop is non-archival and doesn't have proceedings.</small>
+                        <small>All deadlines are Anywhere on Earth (AOE).</small>
                     </div>
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Relevant Links</h5>
-                    </div>
-                    <div class="card-body">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Relevant Links</h5>
+                        </div>
+                        <div class="card-body right-pane-card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <a href="https://iclr.cc/Conferences/2026" target="_blank" class="text-decoration-none">
@@ -368,8 +391,8 @@
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="" class="text-decoration-none">
-                                    OpenReview Submission Portal (To be announced)
+                                <a href="https://openreview.net/group?id=ICLR.cc/2026/Workshop/SPOT" class="text-decoration-none">
+                                    OpenReview Submission Portal
                                     <i class="bi bi-box-arrow-up-right ms-1"></i>
                                 </a>
                             </li>
@@ -379,9 +402,26 @@
                                     <i class="bi bi-box-arrow-up-right ms-1"></i>
                                 </a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSfWYLEkQ4qD3MvNC0f4j6ApDEPV8qCZNiOnYtoCGyX92CeQ/viewform?usp=dialog" class="text-decoration-none">
+                                    Call for Reviewers
+                                    <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Important Information About Tiny Papers</h5>
+                        </div>
+                        <div class="card-body right-pane-card-body">
+                            <p class="mb-0">
+                                This year, ICLR is discontinuing the separate “Tiny Papers” track and instead requires each workshop to accept short (4 pages in ICLR format) paper submissions, with an eye towards inclusion. Authors of these papers will be earmarked for potential funding from ICLR. A separate application for Financial Assistance is required to evaluate eligibility. The application for Financial Assistance will open at the beginning of February and close on March 2, 2025. For more details, visit <a href="https://iclr.cc/Conferences/2025/CallForTinyPapers" class="text-decoration-none">Call For Tiny Papers<i class="bi bi-box-arrow-up-right ms-1"></i></a>.
+                            </p>
+                        </div>
+                    </div>
 
                 <!-- <div class="card">
                     <div class="card-header bg-secondary text-white">
